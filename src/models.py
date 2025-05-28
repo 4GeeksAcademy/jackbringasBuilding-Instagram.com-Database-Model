@@ -5,9 +5,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 import datetime
 from eralchemy2 import render_er
-from flask_sqlalchemy import SQLAlchemy
-db = SQLAlchemy()
-
 
 Base = declarative_base()
 
@@ -59,10 +56,10 @@ class Like(Base):
     post_id = Column(Integer, ForeignKey('post.id'))
     post = relationship('Post', back_populates='likes')
 
-# Diagram generator
+# Generate the diagram
 try:
     result = render_er(Base, 'diagram.png')
-    print("Success! Check the diagram.png file.")
+    print("✅ Diagram generated! Check diagram.png.")
 except Exception as e:
-    print("There was a problem generating the diagram")
+    print("❌ Error generating the diagram.")
     raise e
